@@ -30,9 +30,9 @@ SELECT * FROM cron_test_log
 pool.query(ADD_LOG, [new Date().toUTCString()]).then((res) => {
   console.log(res.command);
   pool
-    .query("SELECT count(*) FROM cron_test_log")
+    .query("SELECT * FROM cron_test_log ORDER BY createdat DESC LIMIT 5")
     .then((res) => {
-      return console.log(res.rows[0].count);
+      return console.log(res.rows);
     })
     .then(() => exit());
 });
