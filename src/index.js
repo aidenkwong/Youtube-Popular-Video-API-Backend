@@ -27,7 +27,7 @@ SELECT * FROM cron_test_log
 `;
 
 // pool.query(CREATE_TABLE);
-pool.query(ADD_LOG, [new Date().toUTCString()]).then((res) => {
+pool.query(ADD_LOG, [new Date()]).then((res) => {
   console.log(res.command);
   pool
     .query("SELECT * FROM cron_test_log ORDER BY createdat DESC LIMIT 5")
