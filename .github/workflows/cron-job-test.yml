@@ -4,7 +4,7 @@ on:
     branches:
       - main
   schedule:
-    - cron: '*/5 * * * *'
+    - cron: "0 */3 * * *"
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -12,8 +12,9 @@ jobs:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v1
         with:
-          node-version: '16.x'
+          node-version: "16.x"
       - run: npm install
-      - run: node src/index.js
+      - run: node operations/addVideos.js
         env:
           DATABASE_URL: ${{ secrets.DATABASE_URL }}
+          BACKUP_YOUTUBE_API_KEY: ${{ secrets.BACKUP_YOUTUBE_API_KEY }}
