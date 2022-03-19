@@ -9,6 +9,7 @@ router.get("/mostFrequentWords", async (req, res) => {
     const { number } = req.query;
     const top10Videos = await top10VideosModel.find();
     const hash = {};
+    const hashId = [];
     top10Videos.map((itm) =>
       itm.videos.map((video) => {
         const words = video.title.split(" ");
@@ -16,11 +17,14 @@ router.get("/mostFrequentWords", async (req, res) => {
           const reg = /^[A-Za-z]+$/;
           return reg.test(str);
         };
-        words.map((word) => {
-          if (isEnglish(word)) {
-            word in hash ? (hash[word] += 1) : (hash[word] = 1);
-          }
-        });
+        if (hashId.indexOf(video.id) === -1) {
+          hashId.push(video.id);
+          words.map((word) => {
+            if (isEnglish(word)) {
+              word in hash ? (hash[word] += 1) : (hash[word] = 1);
+            }
+          });
+        }
       })
     );
     const sorted = Object.keys(hash)
