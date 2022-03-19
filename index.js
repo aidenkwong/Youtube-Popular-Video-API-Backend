@@ -4,6 +4,8 @@ import cors from "cors";
 import mongoose from "mongoose";
 import dotenv from "dotenv";
 import videoRoutes from "./routes/videos.js";
+import regionRoutes from "./routes/regions.js";
+import wordRoutes from "./routes/words.js";
 
 const app = express();
 dotenv.config();
@@ -13,10 +15,12 @@ app.use(bodyParser.json({ limit: "3000mb", extended: true }));
 app.use(bodyParser.urlencoded({ limit: "3000mb", extended: true }));
 
 app.get("/", (req, res) => {
-  res.send("This is the server of the app");
+  res.send("This is backend");
 });
 
 app.use("/videos", videoRoutes);
+app.use("/regions", regionRoutes);
+app.use("/words", wordRoutes);
 
 const PORT = process.env.PORT || 5000;
 
