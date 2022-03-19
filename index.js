@@ -4,6 +4,7 @@ import cors from "cors";
 import mongoose from "mongoose";
 import dotenv from "dotenv";
 import videoRoutes from "./routes/videos.js";
+import regionRoutes from "./routes/regions.js";
 
 const app = express();
 dotenv.config();
@@ -17,6 +18,7 @@ app.get("/", (req, res) => {
 });
 
 app.use("/videos", videoRoutes);
+app.use("/regions", regionRoutes);
 
 const PORT = process.env.PORT || 5000;
 
