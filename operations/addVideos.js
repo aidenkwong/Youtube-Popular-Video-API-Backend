@@ -3,12 +3,13 @@ import { config } from "dotenv";
 import axios from "axios";
 import mongoose from "mongoose";
 import regionModel from "../models/region.js";
-import addVideos from "../controllers/video.js";
+import { addVideos } from "../controllers/video.js";
 
 config();
 
 const connectDB = async () => {
   await mongoose.connect(process.env.DATABASE_URL);
+  return "connected to db";
 };
 
 connectDB()
