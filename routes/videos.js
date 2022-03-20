@@ -29,4 +29,17 @@ router.get("/top10Videos", async (req, res) => {
   }
 });
 
+router.get("/totalVideosCount", async (req, res) => {
+  await top10VideosModel
+    .count()
+    .then((count) => {
+      console.log(count);
+      res.status(200).json({ count: count * 10 });
+    })
+    .catch((err) => {
+      console.log(err);
+      res.status(500).send("Internal server error");
+    });
+});
+
 export default router;
