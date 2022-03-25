@@ -3,6 +3,7 @@ import mongoose from "mongoose";
 const videoSchema = new mongoose.Schema({
   id: { type: String, required: true },
   title: { type: String, required: true },
+  videoCat: { type: String },
   channelId: { type: String },
 });
 
