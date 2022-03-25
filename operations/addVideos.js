@@ -26,6 +26,8 @@ const fetchData = async () => {
       return data?.items?.map((item) => ({
         id: item.id,
         title: item.snippet.title,
+        videoCat: item.snippet.categoryId,
+        channelId: item.snippet.channelId,
         region: doc.name,
       }));
     });
@@ -37,7 +39,7 @@ const fetchData = async () => {
             delete video.region;
             return video;
           })
-        );
+        ).catch((err) => console.log(err));
         return videos;
       });
 
