@@ -11,7 +11,7 @@ jobs:
         with:
           node-version: "16.x"
       - run: npm install
-      - run: node operations/addVideos.js
+      - run: node operations/daily.js
         env:
           DATABASE_URL: ${{ secrets.DATABASE_URL }}
           BACKUP_YOUTUBE_API_KEY: ${{ secrets.BACKUP_YOUTUBE_API_KEY }}

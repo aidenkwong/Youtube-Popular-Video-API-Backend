@@ -2,7 +2,7 @@ import { exit } from "process";
 import { config } from "dotenv";
 import axios from "axios";
 import mongoose from "mongoose";
-import addRegion from "../controllers/region.js";
+import { addRegion } from "../controllers/region.js";
 
 config();
 
