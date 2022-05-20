@@ -1,5 +1,5 @@
 import express from "express";
-import wordModel from "../models/words.js";
+import wordModel from "../models/word.js";
 
 const router = express.Router();
 

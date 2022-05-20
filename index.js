@@ -6,6 +6,7 @@ import dotenv from "dotenv";
 import videoRoutes from "./routes/videos.js";
 import regionRoutes from "./routes/regions.js";
 import wordRoutes from "./routes/words.js";
+import top10VideosModel from "./models/video.js";
 
 const app = express();
 dotenv.config();

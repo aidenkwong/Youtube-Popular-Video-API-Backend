@@ -1,7 +1,7 @@
 name: Master
 on:
   schedule:
-    - cron: "0 1 * * *"
+    - cron: "0 0 1 * *"
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -11,7 +11,7 @@ jobs:
         with:
           node-version: "16.x"
       - run: npm install
-      - run: node operations/daily.js
+      - run: node src/operations/monthly.js
         env:
           DATABASE_URL: ${{ secrets.DATABASE_URL }}
           BACKUP_YOUTUBE_API_KEY: ${{ secrets.BACKUP_YOUTUBE_API_KEY }}
