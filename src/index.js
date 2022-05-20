@@ -6,7 +6,7 @@ import dotenv from "dotenv";
 import videoRoutes from "./routes/videos.js";
 import regionRoutes from "./routes/regions.js";
 import wordRoutes from "./routes/words.js";
-import top10VideosModel from "./models/video.js";
+import videoCatRoutes from "./routes/videoCats.js";
 
 const app = express();
 dotenv.config();
@@ -22,6 +22,7 @@ app.get("/", (req, res) => {
 app.use("/videos", videoRoutes);
 app.use("/regions", regionRoutes);
 app.use("/words", wordRoutes);
+app.use("/videoCats", videoCatRoutes);
 
 const PORT = process.env.PORT || 5000;
 
