@@ -1,4 +1,4 @@
-name: Master
+name: monthly-operation
 on:
   schedule:
     - cron: "0 0 1 * *"

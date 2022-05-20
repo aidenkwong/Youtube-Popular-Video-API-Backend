@@ -1,4 +1,4 @@
-name: Master
+name: daily-operation
 on:
   schedule:
     - cron: "0 1 * * *"
