@@ -4,6 +4,7 @@ const videoSchema = new mongoose.Schema({
   id: { type: String, required: true },
   title: { type: String, required: true },
   videoCat: { type: String },
+  tags: { type: Array },
   channelId: { type: String },
 });
 

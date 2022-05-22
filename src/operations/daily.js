@@ -34,6 +34,7 @@ const addVideosOp = async () => {
       title: item.snippet.title,
       videoCat: item.snippet.categoryId,
       channelId: item.snippet.channelId,
+      tags: item.snippet?.tags || [],
       region: doc.name,
     }));
   });
