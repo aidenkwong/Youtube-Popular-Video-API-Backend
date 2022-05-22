@@ -18,9 +18,10 @@ const fetchData = async () => {
   const { data } = await axios.get(
     `https://youtube.googleapis.com/youtube/v3/i18nRegions?part=snippet&key=${process.env.BACKUP_YOUTUBE_API_KEY}`
   );
-  data.items.map(async (item) => {
+  const promises = data.items.map(async (item) => {
     await addRegion(item.snippet.name, item.id);
   });
+  return await Promise.all(promises);
 };
 
 fetchData()
