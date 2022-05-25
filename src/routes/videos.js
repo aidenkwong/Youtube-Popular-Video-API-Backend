@@ -1,5 +1,6 @@
 import express from "express";
 import top10VideosModel from "../models/video.js";
+import youtube_video_cat_list from "../constants/youtube_video_cat_list.js";
 
 const router = express.Router();
 
@@ -23,7 +24,14 @@ router.get("/top10Videos", async (req, res) => {
         res.status(500).send("Internal server error");
       });
 
-    res.status(200).json({ result: videos });
+    const videoCatList = youtube_video_cat_list.items;
+    const videos2 = videos.map((itm) => {
+      const videoCat =
+        videoCatList.find((cat) => cat.id === itm.videoCat) || "";
+      return Object.assign(itm, { videoCat: videoCat.snippet.title });
+    });
+
+    res.status(200).json({ result: videos2 });
   } catch (error) {
     res.status(404).json({ message: error });
   }

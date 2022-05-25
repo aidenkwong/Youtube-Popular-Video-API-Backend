@@ -11,7 +11,7 @@ import axios from "axios";
 config();
 
 const connectDB = async () => {
-  await mongoose.connect(process.env.TESTING_DATABASE_URL);
+  await mongoose.connect(process.env.DATABASE_URL);
   return "connected to db";
 };
 
@@ -19,22 +19,29 @@ connectDB()
   .then((res) => console.log(res))
   .catch((err) => console.log(err));
 
+const originalDate = new Date();
+const prevDate = new Date(originalDate).setDate(originalDate.getDate() - 1);
 const test = async () => {
-  const docs = await top10VideosModel.find();
-
-  const hashMap = {};
-  for (const item of docs) {
-    for (const video of item.videos) {
-      for (const tag of video.tags) {
-        hashMap[tag] ? (hashMap[tag] += 1) : (hashMap[tag] = 1);
+  const docs = await top10VideosModel.find({
+    time: {
+      $gte: prevDate,
+      $lte: originalDate,
+    },
+  });
+  const titleHashMap = {};
+  for (const doc of docs) {
+    for (const video of doc.videos) {
+      if (!titleHashMap[video.title]) {
+        titleHashMap[video.title] = [doc.region];
+      } else {
+        titleHashMap[video.title].push(doc.region);
       }
     }
   }
-
-  const rank = Object.entries(hashMap)
-    .sort((a, b) => b[1] - a[1])
-    .slice(0, 50);
-  console.log(rank);
+  const sorted = Object.entries(titleHashMap).sort(
+    (a, b) => titleHashMap[b[0]].length - titleHashMap[a[0]].length
+  );
+  console.log(sorted.slice(0, 10));
 };
 
 test().then(() => exit());
