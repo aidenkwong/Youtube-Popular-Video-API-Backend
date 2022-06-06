@@ -5,7 +5,7 @@ const router = express.Router();
 
 router.get("/", async (req, res) => {
   try {
-    const channels = await channelModel.find({});
+    const channels = await channelModel.find().sort({ count: -1 }).limit(30);
 
     res.status(200).json({ result: channels });
   } catch (error) {

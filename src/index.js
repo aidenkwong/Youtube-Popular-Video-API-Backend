@@ -27,7 +27,7 @@ app.use("/words", wordRoutes);
 app.use("/videoCats", videoCatRoutes);
 app.use("/channel", channelRoutes);
 
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 5001;
 
 mongoose
   .connect(process.env.DATABASE_URL, {
